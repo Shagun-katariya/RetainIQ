@@ -1,0 +1,132 @@
+/* Universal selector to ensure consistent box-sizing and reset margins/padding */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Center the body content using Flexbox */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main container styling */
+.container {
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  overflow: auto; /* Enable scrolling within the container */
+  height: 80vh; /* Set height to 80% of viewport height */
+  width: 90vw; /* Set width to 90% of viewport width */
+  background-color: rgba(250, 248, 248, 0.851); /* Light background color */
+
+  /* Hide scrollbar across different browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+/* Hide scrollbar in WebKit browsers like Chrome and Safari */
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Loader styling for when content is loading globally */
+.global-loader {
+  position: absolute;
+  left: 50%; /* Center horizontally */
+  top: 50%; /* Center vertically */
+  z-index: 1000; /* Ensure loader is above all other elements */
+}
+
+/* Row styling */
+.row {
+  display: flex;
+  flex-direction: row; /* Align children horizontally */
+  position: relative;
+  padding-right: 30px; /* Ensure space for the delete icon on the right */
+}
+
+/* Delete icon styling */
+.delete_icon {
+  position: absolute; /* Position icon absolutely within the row */
+  top: 20%; /* Center vertically within the row */
+  right: 10px; /* Position 10px from the right */
+  left: 40px; /* Position 40px from the left */
+  opacity: 0; /* Initially hide the icon */
+  transition: opacity 0.3s ease; /* Smooth transition for icon appearance */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: red; /* Red color for delete icon */
+}
+
+/* Show delete icon on row hover */
+.row:hover .delete_icon {
+  opacity: 1; /* Make icon visible */
+  z-index: 1000; /* Ensure icon is above other elements */
+}
+
+/* Header styling */
+.header {
+  height: 100px; /* Fixed height for header */
+  display: flex; /* Flexbox for header content */
+}
+
+/* Styling for the plus icon (add row button) */
+.plus_icon {
+  border-radius: 4px; /* Rounded corners */
+  background: white; /* White background */
+  margin: 15px; /* Space around the icon */
+  padding: 5px; /* Padding inside the icon */
+  margin-left: 35px; /* Additional left margin */
+}
+
+/* Cursor change on hover over the plus icon */
+.plus_icon:hover {
+  cursor: pointer;
+}
+
+/* Wrapper for icons in the second part of the UI */
+.icon2 {
+  height: 200px; /* Fixed height */
+}
+
+/* Custom loader animation */
+.loader {
+  border: 1px solid #f3f3f3; /* Light grey border */
+  border-top: 1px solid #04090b; /* Dark border for top part to create spin effect */
+  border-radius: 50%; /* Make loader circular */
+  width: 20px; /* Loader width */
+  height: 20px; /* Loader height */
+  margin-left: 40px; /* Left margin */
+  margin-top: 20px; /* Top margin */
+  animation: spin 1s linear infinite; /* Infinite spin animation */
+}
+
+/* Keyframes for the spinning loader */
+@keyframes spin {
+  0% { transform: rotate(0deg); } /* Start at 0 degrees rotation */
+  100% { transform: rotate(360deg); } /* Complete a full circle */
+}
+
+/* Popup message styling */
+.popup-message {
+  position: fixed; /* Fixed position relative to viewport */
+  top: 20px; /* 20px from the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  background-color: white; /* White background */
+  color: black; /* Black text */
+  padding: 10px 20px; /* Padding inside the message */
+  border-radius: 5px; /* Rounded corners */
+  z-index: 1000; /* Ensure it appears above other content */
+  transition: opacity 1s ease; /* Smooth opacity transition */
+  display: flex; /* Flexbox for aligning icon and text */
+  align-items: center; /* Center items vertically */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+/* Styling for the popup icon (tick mark) */
+.popup-icon {
+  color: #28a745; /* Green color for the tick icon */
+  margin-right: 10px; /* Space between icon and text */
+}

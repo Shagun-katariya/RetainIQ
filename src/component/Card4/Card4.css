@@ -1,0 +1,34 @@
+.title {
+  display: flex;
+  justify-content: flex-end; /* Space between content and vertical line */
+  align-items: center;
+  height: 100px;
+  min-width: 350px;
+}
+
+.title2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100px;
+  min-width: 200px;
+}
+
+.innertitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 150px;
+}
+
+.headIcon {
+  height: 15px;
+  width: 15px;
+  margin-left: 20px; /* Add left margin */
+}
+
+.vertical-line {
+  width: 1px;
+  height: 30px;
+  background-color: #ccc;
+}

@@ -1,0 +1,76 @@
+.row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .empty {
+    height: 100px;
+    min-width: 100px;
+  }
+  
+  .plus_icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  .icon1 {
+    width: 40px;
+    height: 150px;
+    margin-top: 45px;
+  }
+  
+  .loader {
+    border: 1px solid #f3f3f3; /* Light grey */
+    border-top: 1px solid #04090b; /* Dark grey */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-left: 40px;
+    margin-top: 20px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .popup-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 10000; /* Ensure visibility over other elements */
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    animation: fadeInOut 2s ease;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .popup_icon {
+    color: #28a745; /* Green color for the tick */
+    margin-right: 10px;
+  }
+  

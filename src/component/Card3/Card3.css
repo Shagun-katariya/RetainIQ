@@ -1,0 +1,38 @@
+.card3{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    height: 150px;
+    min-width: 200px;
+}
+.innerbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 150px;
+    height: 125px;
+    background-color: white;
+    border: dotted;
+    margin-right: 19px;
+    border-color: rgb(245 227 227);
+    border-radius: 5px;
+}
+
+img{
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+}
+
+p{
+    font-size: xx-small;
+}
+
+.vertical_line {
+    width: 1px;
+    height: 140px; 
+    background-color: #ccc;
+    margin-left: 5px; /* Space between icon and vertical line */
+  }
+  

@@ -1,0 +1,45 @@
+.card2{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    height: 150px;
+    min-width: 350px;
+}
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 125px;
+    background-color: white;
+    border: dotted;
+    margin-right: 19px;
+    border-color: rgb(245 227 227);
+    border-radius: 5px;
+}
+.box1{
+    border: 0.5px solid;
+    border-color: rgb(245 227 227);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    font-size: xx-small;
+}
+.box2{
+    background: #b0d2b0;
+    color: green;
+    border: 0.5px solid;
+    border-color: rgb(245 227 227);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    font-size: xx-small;
+}
+
+.vertical_line {
+    width: 1px;
+    height: 140px; 
+    background-color: #ccc;
+    margin-left: 5px; /* Space between icon and vertical line */
+  }
+  

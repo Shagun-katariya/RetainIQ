@@ -1,0 +1,32 @@
+.card1 {
+    display: flex;
+    justify-content: space-between; /* Space between content and vertical line */
+    align-items: center;
+    height: 150px;
+    min-width: 100px;
+    /* border: 2px solid black; */
+  }
+  
+  .content {
+    display: flex; /* Flex for centering the content */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    flex-grow: 1; /* Allow content to grow and occupy available space */
+  }
+
+  .icon2{
+    height: 18px;
+    width: 20px;
+  }
+  
+  h2 {
+    margin-right: 4px; /* Space between h2 and icon */
+  }
+  
+  .vertical_line {
+    width: 1px;
+    height: 140px; 
+    background-color: #ccc;
+    margin-left: 5px; /* Space between icon and vertical line */
+  }
+  
