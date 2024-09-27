@@ -1,0 +1,3 @@
+--> Download and open in vscode 
+--> open Vscode terminal and run "npm i"
+--> then run "npm start"
