@@ -20,7 +20,7 @@ body {
   height: 80vh; /* Set height to 80% of viewport height */
   width: 90vw; /* Set width to 90% of viewport width */
   background-color: rgba(250, 248, 248, 0.851); /* Light background color */
-
+  scroll-behavior: smooth;
   /* Hide scrollbar across different browsers */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer and Edge */
