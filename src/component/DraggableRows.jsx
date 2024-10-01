@@ -1,67 +1,35 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
 const DraggableRow = ({ id, index, moveRow, children, containerRef }) => {
-  const ref = React.useRef(null);
-  const scrollingRef = React.useRef(null); // Ref to manage the scroll
+  const ref = useRef(null); // Reference for the draggable row
+  const scrollAnimationRef = useRef(null); // Reference to track the scrolling animation
 
   const [, drop] = useDrop({
     accept: "row",
     hover(item, monitor) {
-      if (!ref.current) {
-        return;
-      }
+      if (!ref.current) return;
+
       const dragIndex = item.index;
       const hoverIndex = index;
 
-      // Avoid moving to the same position
       if (dragIndex === hoverIndex) {
-        return;
+        return; // Prevent self-drop
       }
 
-      // Calculate the hover bounding rect
-      const hoverBoundingRect = ref.current.getBoundingClientRect();
-      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-      // Scroll logic
+      // Start smooth scrolling
       const container = containerRef.current;
-      const scrollThreshold = 50; // Distance from top or bottom edge to start scrolling
-      const scrollSpeed = 50; // Speed of scrolling
-
-      if (hoverClientY < scrollThreshold) {
-        // Scroll up
-        if (container && container.scrollTop > 0) {
-          if (!scrollingRef.current) {
-            scrollingRef.current = requestAnimationFrame(() => {
-              container.scrollTop += scrollSpeed; // Scroll up by scrollSpeed pixels
-              scrollingRef.current = null; // Reset the ref
-            });
-          }
-        }
-      } else if (hoverClientY > hoverBoundingRect.height - scrollThreshold) {
-        // Scroll down
-        if (container && container.scrollTop < container.scrollHeight - container.clientHeight) {
-          if (!scrollingRef.current) {
-            scrollingRef.current = requestAnimationFrame(() => {
-              container.scrollTop -= scrollSpeed; // Scroll down by scrollSpeed pixels
-              scrollingRef.current = null; // Reset the ref
-            });
-          }
+      if (container) {
+        if (dragIndex > hoverIndex) {
+          // Scroll up
+          smoothScroll(container, -100);
+        } else if (dragIndex < hoverIndex) {
+          // Scroll down
+          smoothScroll(container, 100);
         }
       }
 
-      // Move the row
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-
-      moveRow(dragIndex, hoverIndex);
+      moveRow(dragIndex, hoverIndex); // Move the row in the state
       item.index = hoverIndex; // Update the index of the dragged item
     },
   });
@@ -74,7 +42,36 @@ const DraggableRow = ({ id, index, moveRow, children, containerRef }) => {
     }),
   });
 
-  drag(drop(ref));
+  drag(drop(ref)); // Connect the drag and drop functionality to the row
+
+  // Function to handle smooth scrolling
+  const smoothScroll = (container, scrollAmount) => {
+    if (scrollAnimationRef.current) {
+      cancelAnimationFrame(scrollAnimationRef.current); // Cancel any ongoing animation
+    }
+
+    const startScrollTop = container.scrollTop;
+    const targetScrollTop = startScrollTop + scrollAmount;
+
+    const duration = 300; // Duration of the scroll in milliseconds
+    const startTime = performance.now();
+
+    const animateScroll = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1); // Normalize progress between 0 and 1
+
+      // Ease in-out effect
+      const easing = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+      container.scrollTop = startScrollTop + (targetScrollTop - startScrollTop) * easing(progress);
+
+      if (progress < 1) {
+        scrollAnimationRef.current = requestAnimationFrame(animateScroll);
+      }
+    };
+
+    scrollAnimationRef.current = requestAnimationFrame(animateScroll); // Start the animation
+  };
 
   return (
     <div
@@ -82,7 +79,7 @@ const DraggableRow = ({ id, index, moveRow, children, containerRef }) => {
       style={{ opacity: isDragging ? 0.5 : 1, cursor: "move" }}
       className="row"
     >
-      {children}
+      {children} {/* Render children components here */}
     </div>
   );
 };
